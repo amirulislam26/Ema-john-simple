@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import useProducts from '../../hooks/useProducts';
 import { addToDb, getStoredCart } from '../../utilities/fakedb';
 import Cart from '../cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css'
 const Shop = () => {
-    const [products, setProducts] = useState([])
-
+    // const [products, setProducts] = useState([])
+    const [products, setProducts] = useProducts();
     const [cart, setCart] = useState([]);
 
-    useEffect(() => {
-        fetch('products.json')
-            .then(res => res.json())
-            .then(data => { setProducts(data) })
-    }, [])
+    // useEffect(() => {
+    //     fetch('products.json')
+    //         .then(res => res.json())
+    //         .then(data => { setProducts(data) })
+    // }, [])
 
     useEffect(() => {
         const storedCart = getStoredCart();
@@ -21,12 +22,12 @@ const Shop = () => {
             const addedProduct = products.find(product => product.id === id);
             if (addedProduct) {
                 const quantity = storedCart[id];
-                addedProduct.quantity = quantity
-                savedCart.push(addedProduct)
+                addedProduct.quantity = quantity;
+                savedCart.push(addedProduct);
             }
         };
 
-        setCart(storedCart);
+        setCart(savedCart);
 
     }, [products])
     const handerAddToCart = (selectedProduct) => {

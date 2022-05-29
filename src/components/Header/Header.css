@@ -16,9 +16,10 @@
 }
 
 .header a:hover {
-    background-color: blueviolet;
+    color: lawngreen;
+    /* background-color: blueviolet;
     border: 2px solid lightpink;
-    border-radius: 5px;
+    border-radius: 5px; */
     margin: 5px;
     padding: 5px;
 }
